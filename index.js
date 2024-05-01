@@ -1,22 +1,18 @@
 require("dotenv").config();
 const express = require("express");
-const app = express();
 const UserRouter = require("./Routes/User");
 const MongoConnect = require("./Config/Db");
 const cookieParser = require("cookie-parser");
 const path = require("path");
-const cors=require('cors');
+const cors = require("cors");
 
 MongoConnect();
 
+const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(cors({
-    origin: "https://login-system-dun-gamma.vercel.app",
-    credentials: true,
-}));
-
+app.use(cors());
 
 app.set("view engine", "ejs");
 app.set("views", path.resolve("view"));
