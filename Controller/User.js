@@ -86,7 +86,7 @@ async function ForgotPassword(req, res) {
       from: "abhishekvaghasiya00@gmail.com",
       to: email,
       subject: "Reset Password",
-      text: `http://localhost:3000/reset-password/${token}`,
+      text: `https://login-system-dun-gamma.vercel.app/reset-password/${token}`,
     };
 
     transporter.sendMail(mailOptions, (error, info) => {
