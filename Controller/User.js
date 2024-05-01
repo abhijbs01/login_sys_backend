@@ -108,17 +108,23 @@ async function ForgotPassword(req, res) {
   }
 }
 
+
+
 async function ResetPassword(req, res) {
   const token = req.params.token;
   const { password } = req.body;
   try {
     const decoded = jwt.verify(token, process.env.JWT);
-    const id = decoded.id;
+    const userId = decoded._id;
     const hashedPassword = await bcrypt.hash(password, 10);
-    await User.findByIdAndUpdate(id, { password: hashedPassword });
+    await User.findByIdAndUpdate(userId, { password: hashedPassword });
     return res.status(200).json({ message: "Password reset successfully" });
   } catch (err) {
-    return res.status(500).json({ message: "Invalid token" });
+    console.error("ResetPassword Error:", err);
+    if (err.name === "TokenExpiredError") {
+      return res.status(400).json({ message: "Token has expired" });
+    }
+    return res.status(500).json({ message: "Failed to reset password" });
   }
 }
 
