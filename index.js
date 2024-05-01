@@ -4,9 +4,7 @@ const UserRouter = require("./Routes/User");
 const MongoConnect = require("./Config/Db");
 const app = express();
 const cookieParser = require("cookie-parser");
-const path = require("path");
 const cors = require("cors");
-
 MongoConnect();
 
 app.use(express.json());
@@ -14,8 +12,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cors());
 
-app.set("view engine", "ejs");
-app.set("views", path.resolve("view"));
+
 
 app.use("/", UserRouter);
 
