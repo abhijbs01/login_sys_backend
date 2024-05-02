@@ -77,8 +77,8 @@ async function ForgotPassword(req, res) {
     var transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user:process.env.USER,
-        pass:process.env.PWD,
+        user: process.env.USER,
+        pass: process.env.PWD,
       },
     });
 
@@ -108,8 +108,6 @@ async function ForgotPassword(req, res) {
     });
   }
 }
-
-
 
 async function ResetPassword(req, res) {
   const token = req.params.token;
