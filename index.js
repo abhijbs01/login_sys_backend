@@ -10,12 +10,11 @@ MongoConnect();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
 app.use(cors({
   origin: "https://login-system-dun-gamma.vercel.app",
-  methods: ["GET", "POST", "PUT", "DELETE"], 
-  allowedHeaders: ["Content-Type", "Authorization"]
+  credentials: true
 }));
-
 
 
 app.use("/", UserRouter);
