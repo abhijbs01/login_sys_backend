@@ -1,11 +1,18 @@
-require('dotenv').config()
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
+mongoose.set("strictQuery", false);
+require('dotenv').config();
 
+const MongoConnect = async () => {
+    try {
+        await mongoose.connect(process.env.MONGO_CONNECT, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        });
+        console.log(`Successfully connected to : ${mongoose.connection.host}`);
+    } catch (error) {
+        console.error(error);
+        process.exit(1);
+    }
+};
 
-async function MongoConnect(){
-    mongoose.connect(process.env.MONGO_CONNECT)
-    .then(() => {console.log("Mongoose connect Succesfully!");
-  });
-}
-
-module.exports =MongoConnect
+module.exports = MongoConnect;
