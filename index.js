@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use(cors({
-  origin: "https://login-system-dun-gamma.vercel.app",
+  origin: "login-system-dun-gamma.vercel.app",
   credentials: true
 }));
 
